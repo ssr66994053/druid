@@ -32,9 +32,9 @@ import com.alibaba.druid.benckmark.pool.model.TableOperator;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.taobao.datasource.LocalTxDataSourceDO;
-import com.taobao.datasource.TaobaoDataSourceFactory;
-import com.taobao.datasource.resource.adapter.jdbc.local.LocalTxDataSource;
+//import com.taobao.datasource.LocalTxDataSourceDO;
+//import com.taobao.datasource.TaobaoDataSourceFactory;
+//import com.taobao.datasource.resource.adapter.jdbc.local.LocalTxDataSource;
 
 /**
  * 测试各个连接池在进行批量插入时操作的性能
@@ -88,25 +88,25 @@ public class Case4 extends TestCase {
         System.out.println();
     }
 
-    public void test_jobss() throws Exception {
-        LocalTxDataSourceDO dataSourceDO = new LocalTxDataSourceDO();
-        dataSourceDO.setBlockingTimeoutMillis(1000 * 60);
-        dataSourceDO.setMaxPoolSize(maxPoolSize);
-        dataSourceDO.setMinPoolSize(minPoolSize);
-
-        dataSourceDO.setDriverClass(driverClass);
-        dataSourceDO.setConnectionURL(jdbcUrl);
-        dataSourceDO.setUserName(user);
-        dataSourceDO.setPassword(password);
-
-        LocalTxDataSource tx = TaobaoDataSourceFactory.createLocalTxDataSource(dataSourceDO);
-        DataSource dataSource = tx.getDatasource();
-
-        for (int i = 0; i < loopCount; ++i) {
-            p0(dataSource, "jboss-datasource", threadCount);
-        }
-        System.out.println();
-    }
+//    public void test_jobss() throws Exception {
+//        LocalTxDataSourceDO dataSourceDO = new LocalTxDataSourceDO();
+//        dataSourceDO.setBlockingTimeoutMillis(1000 * 60);
+//        dataSourceDO.setMaxPoolSize(maxPoolSize);
+//        dataSourceDO.setMinPoolSize(minPoolSize);
+//
+//        dataSourceDO.setDriverClass(driverClass);
+//        dataSourceDO.setConnectionURL(jdbcUrl);
+//        dataSourceDO.setUserName(user);
+//        dataSourceDO.setPassword(password);
+//
+//        LocalTxDataSource tx = TaobaoDataSourceFactory.createLocalTxDataSource(dataSourceDO);
+//        DataSource dataSource = tx.getDatasource();
+//
+//        for (int i = 0; i < loopCount; ++i) {
+//            p0(dataSource, "jboss-datasource", threadCount);
+//        }
+//        System.out.println();
+//    }
 
     public void test_dbcp() throws Exception {
         final BasicDataSource dataSource = new BasicDataSource();
